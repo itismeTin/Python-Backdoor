@@ -9,3 +9,8 @@ install pip packages :
 pip install clipboard  
 pip install key-generator  
 ```
+### PyPI projects used in this project
+clipboard : Terry.Yin https://pypi.org/project/clipboard/  
+key-generator : Sahith02 https://pypi.org/project/key-generator/  
+  
+*Please note that I am not responsible for what you use with this backdoor, so please you it responsibly and use it with your own risk*
